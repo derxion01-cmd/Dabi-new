@@ -11,6 +11,7 @@ import readline from "readline";
 import { Boom } from "@hapi/boom";
 import { makeWASocket, useMultiFileAuthState, DisconnectReason } from "@whiskeysockets/baileys";
 import { fileURLToPath } from "url";
+import axios from "axios"; // <-- NEW: Import axios for API calls
 
 import globalSetting from "./toolkit/setting.js";
 import makeInMemoryStore from "./toolkit/store.js";
@@ -28,6 +29,9 @@ const logger = pino({ level: "silent" });
 const store = makeInMemoryStore();
 
 let conn;
+
+// --- NEW: Define bot number for mention/reply detection ---
+const botNumber = globalSetting?.botNumber || process.env.BOT_NUMBER || "YOUR_BOT_NUMBER@s.whatsapp.net"; // <-- Replace with your bot WA ID
 
 global.plugins = {};
 global.categories = {};
@@ -161,6 +165,34 @@ const startBot = async () => {
       replaceLid(msg);
       const { textMessage, mediaInfo } = messageContent(msg);
       if (!textMessage && !mediaInfo) return;
+
+      
+      if (isGroup) {
+        const db = getDB();
+        const gcKey = Object.keys(db.Grup || {}).find(k => db.Grup[k].Id === chatId);
+        const autoAiOn = gcKey && db.Grup[gcKey].autoai;
+
+        if (autoAiOn) {
+          const contextInfo = msg.message?.extendedTextMessage?.contextInfo || {};
+          const mentioned = contextInfo.mentionedJid || [];
+          const isMentionedBot = mentioned.includes(6287865843362);
+          const isReplyToBot = contextInfo.participant === 6287865843362;
+
+          if ((isMentionedBot || isReplyToBot) && senderId !== 6287865843362 && textMessage) {
+            try {
+              const res = await axios.get("https://api.vreden.my.id/api/v1/artificial/botika", {
+                params: { prompt: textMessage, username: "vreden123" }
+              });
+              const replyText = res.data?.result || res.data?.response || "Tidak ada jawaban dari Botika.";
+              await conn.sendMessage(chatId, { text: replyText, mentions: [senderId] }, { quoted: msg });
+            } catch (err) {
+              await conn.sendMessage(chatId, { text: "❌ Gagal terhubung ke API Botika." }, { quoted: msg });
+            }
+            return;
+          }
+        }
+      }
+      
 
       const msgId = msg.key?.id;
       if (["conversation", "extendedTextMessage", "imageMessage", "videoMessage"].some((t) => msg.message?.[t])) {
