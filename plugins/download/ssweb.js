@@ -6,7 +6,7 @@ export default {
   tags: 'Download Menu',
   desc: 'Ambil screenshot dari website',
   prefix: true,
-  premium: true,
+  premium: false,
 
   run: async (conn, msg, {
     chatInfo,
