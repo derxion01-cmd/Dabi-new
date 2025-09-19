@@ -6,7 +6,7 @@ export default {
   tags: 'Download Menu',
   desc: 'Download media dari link Pinterest',
   prefix: true,
-  premium: true,
+  premium: false,
 
   run: async (conn, msg, {
     chatInfo,
