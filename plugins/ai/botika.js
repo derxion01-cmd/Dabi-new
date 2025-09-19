@@ -19,19 +19,19 @@ export default {
     }
 
     try {
-      const res = await axios.post('https://api.vreden.my.id/api/v1/artificial/botika', {
-        message: userInput
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
+      
+      const res = await axios.get('https://api.vreden.my.id/api/v1/artificial/botika', {
+        params: {
+          prompt: userInput,
+          username: 'user123'
         }
       });
 
       
-      const replyText = res.data?.result ?? 'Tidak ada jawaban dari Botika.';
+      const replyText = res.data?.result ?? res.data?.response ?? 'Tidak ada jawaban dari Botika.';
       await conn.sendMessage(chatId, { text: replyText }, { quoted: msg });
     } catch (err) {
-      console.error('Botika API Error:', err);
+      console.error('Botika API Error:', err?.response?.data ?? err);
       await conn.sendMessage(chatId, {
         text: '❌ Gagal terhubung ke API Botika.'
       }, { quoted: msg });
