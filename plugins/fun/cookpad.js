@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
   name: 'cookpad',
   command: ['cookpad', 'resep'],
-  tags: 'Fun Menu',
+  tags: 'Fun',
   desc: 'Cari resep makanan dari Cookpad',
   prefix: true,
   owner: false,
@@ -36,10 +36,19 @@ export default {
 
       
       const picked = results[Math.floor(Math.random() * results.length)];
-      const ingredients = picked.ingredients ? picked.ingredients.map(i => `- ${i}`).join('\n') : '-';
+      let ingredientsText = '- (Tidak ada data bahan)';
+      if (Array.isArray(picked.ingredients) && picked.ingredients.length) {
+        ingredientsText = picked.ingredients.map(i => `- ${i}`).join('\n');
+      }
+
+      const messageText =
+        `*${picked.title}*\n` +
+        `Oleh: ${picked.author}\n\n` +
+        `Bahan:\n${ingredientsText}\n\n` +
+        `[Selengkapnya](${picked.url})`;
 
       await conn.sendMessage(chatId, {
-        text: `*${picked.title}*\nOleh: ${picked.author}\n\nBahan:\n${ingredients}\n\n[Selengkapnya](${picked.url})`,
+        text: messageText,
       }, { quoted: msg });
 
       
