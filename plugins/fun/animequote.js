@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
   name: 'animequote',
   command: ['animequote', 'aq'],
-  tags: 'Fun',
+  tags: 'Fun Menu',
   desc: 'Get a random anime quote',
   prefix: true,
   owner: false,
