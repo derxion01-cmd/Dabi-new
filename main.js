@@ -31,7 +31,7 @@ const store = makeInMemoryStore();
 let conn;
 
 
-const botNumber = globalSetting?.botNumber || process.env.6287865843362 || "6287865843362@s.whatsapp.net";
+const botNumber = globalSetting?.6287865843362 || process.env.6287865843362 || "6287865843362@s.whatsapp.net";
 
 global.plugins = {};
 global.categories = {};
