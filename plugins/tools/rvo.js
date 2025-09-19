@@ -8,7 +8,7 @@ export default {
   tags: 'Tools Menu',
   desc: 'Mengekstrak media sekali lihat.',
   prefix: true,
-  premium: true,
+  premium: false,
 
   run: async (conn, msg, { chatInfo }) => {
     const { chatId } = chatInfo;
