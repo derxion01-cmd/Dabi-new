@@ -4,7 +4,7 @@ export default {
   name: 'cookpad',
   command: ['cookpad', 'resep'],
   tags: 'Fun Menu',
-  desc: 'Cari resep makanan dari Cookpad',
+  desc: 'Cari resep makanan dari Cookpad (termasuk langkah-langkah)',
   prefix: true,
   owner: false,
   premium: false,
@@ -20,10 +20,8 @@ export default {
     }
 
     try {
-      
       await conn.sendMessage(chatId, { react: { text: "⏳", key: msg.key } });
 
-      
       const res = await axios.get('https://api.nekolabs.my.id/discovery/cookpad/search', {
         params: { q: query }
       });
@@ -34,24 +32,24 @@ export default {
         return conn.sendMessage(chatId, { text: '❌ Tidak ditemukan resep untuk kata kunci itu.' }, { quoted: msg });
       }
 
-      
       const picked = results[Math.floor(Math.random() * results.length)];
       let ingredientsText = '- (Tidak ada data bahan)';
       if (Array.isArray(picked.ingredients) && picked.ingredients.length) {
         ingredientsText = picked.ingredients.map(i => `- ${i}`).join('\n');
       }
 
-      
+      let instructionsText = '- (Tidak ada langkah-langkah)';
+      if (Array.isArray(picked.instructions) && picked.instructions.length) {
+        instructionsText = picked.instructions.map((step, idx) => `${idx + 1}. ${step}`).join('\n');
+      }
+
       const messageText =
         `*${picked.title}*\n` +
         `Oleh: ${picked.author}\n\n` +
-        `Bahan:\n${ingredientsText}`;
+        `Bahan:\n${ingredientsText}\n\n` +
+        `Langkah-langkah:\n${instructionsText}`;
 
-      await conn.sendMessage(chatId, {
-        text: messageText,
-      }, { quoted: msg });
-
-      
+      await conn.sendMessage(chatId, { text: messageText }, { quoted: msg });
       await conn.sendMessage(chatId, { react: { text: "✅", key: msg.key } });
 
     } catch (err) {
