@@ -31,7 +31,7 @@ const store = makeInMemoryStore();
 let conn;
 
 
-const botNumber = globalSetting?.6287865843362 || process.env.6287865843362 || "6287865843362@s.whatsapp.net";
+const botNumber = globalSetting?.botNumber || process.env.BOT_NUMBER || "6287865843362@s.whatsapp.net";
 
 global.plugins = {};
 global.categories = {};
@@ -175,10 +175,10 @@ const startBot = async () => {
         if (autoAiOn) {
           const contextInfo = msg.message?.extendedTextMessage?.contextInfo || {};
           const mentioned = contextInfo.mentionedJid || [];
-          const isMentionedBot = mentioned.includes(6287865843362);
-          const isReplyToBot = contextInfo.participant === 6287865843362;
+          const isMentionedBot = mentioned.includes(botNumber);
+          const isReplyToBot = contextInfo.participant === botNumber;
 
-          if ((isMentionedBot || isReplyToBot) && senderId !== 6287865843362 && textMessage) {
+          if ((isMentionedBot || isReplyToBot) && senderId !== botNumber && textMessage) {
             try {
               const res = await axios.get("https://api.vreden.my.id/api/v1/artificial/botika", {
                 params: { prompt: textMessage, username: "vreden123" }
@@ -192,7 +192,7 @@ const startBot = async () => {
           }
         }
       }
-      
+     
 
       const msgId = msg.key?.id;
       if (["conversation", "extendedTextMessage", "imageMessage", "videoMessage"].some((t) => msg.message?.[t])) {
