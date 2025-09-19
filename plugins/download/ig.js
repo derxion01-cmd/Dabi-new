@@ -6,7 +6,7 @@ export default {
   tags: 'Download Menu',
   desc: 'Mengunduh video atau foto dari Instagram',
   prefix: true,
-  premium: true,
+  premium: false,
 
   run: async (conn, msg, {
     chatInfo,
