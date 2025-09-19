@@ -6,7 +6,7 @@ export default {
   tags: 'Download Menu',
   desc: 'Download video dari Facebook',
   prefix: true,
-  premium: true,
+  premium: false,
 
   run: async (conn, msg, {
     chatInfo,
