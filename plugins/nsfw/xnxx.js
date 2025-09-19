@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
   name: 'xnxx',
   command: ['xnxx'],
-  tags: 'NSFW',
+  tags: 'Nsfw Menu',
   desc: 'Send XNXX video by direct URL',
   prefix: true,
   owner: false,
