@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
   name: 'hentai',
   command: ['hentai'],
-  tags: 'NSFW',
+  tags: 'Nsfw Menu',
   desc: 'Random hentai video',
   prefix: true,
   owner: false,
