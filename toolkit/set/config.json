@@ -3,7 +3,7 @@
     "ownerNumber": [
       "6287865843362"
     ],
-    "ownerName": "Jshy",
+    "ownerName": "Joshy",
     "contact": "6287865843362",
     "ownerLink": {
       "tt": "",
@@ -46,7 +46,7 @@
       "❲",
       "❳"
     ],
-    "idCh": "120363310100263711@newsletter",
+    "idCh": "",
     "frame": {
       "head": "┏───•",
       "body": "│",
@@ -83,7 +83,7 @@
     "rejectMsg": {
       "isPremium": "tak bole",
       "isOwner": "bole tak",
-      "forOwnerText": "_apalah_"
+      "forOwnerText": ""
     }
   },
   "apiKey": {
