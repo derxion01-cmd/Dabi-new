@@ -6,7 +6,7 @@ export default {
   tags: 'Nsfw Menu',
   desc: 'Cari gambar dari Danbooru',
   prefix: true,
-  premium: true,
+  premium: false,
 
   run: async (conn, msg, {
     args,
