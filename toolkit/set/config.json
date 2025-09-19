@@ -1,10 +1,10 @@
 {
   "ownerSetting": {
     "ownerNumber": [
-      "62851xxxx"
+      "6287865843362"
     ],
-    "ownerName": "Yumi",
-    "contact": "6285194993977",
+    "ownerName": "Jshy",
+    "contact": "6287865843362",
     "ownerLink": {
       "tt": "",
       "yt": "",
@@ -25,7 +25,7 @@
     "footer": "© 𝑫𝒂𝒃𝒊𝑳𝒊𝒏𝒆𝒔",
     "thumbnail": "https://c.termai.cc/i9/vMw.jpg",
     "sendTextLink": {
-      "chshort": "https://whatsapp.com/channel/0029Van8WHGEAKW8OUDniG1m",
+      "chshort": "",
       "gcshort": "",
       "music": ""
     },
@@ -81,9 +81,9 @@
   },
   "msg": {
     "rejectMsg": {
-      "isPremium": "aja sendiri",
-      "isOwner": "aja sendiri",
-      "forOwnerText": "_PERGI LU JENDUL BIKIN GW MUAK AJA 🤮_"
+      "isPremium": "tak bole",
+      "isOwner": "bole tak",
+      "forOwnerText": "_apalah_"
     }
   },
   "apiKey": {
