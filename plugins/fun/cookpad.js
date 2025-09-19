@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
   name: 'cookpad',
   command: ['cookpad', 'resep'],
-  tags: 'Fun',
+  tags: 'Fun Menu',
   desc: 'Cari resep makanan dari Cookpad',
   prefix: true,
   owner: false,
@@ -41,11 +41,11 @@ export default {
         ingredientsText = picked.ingredients.map(i => `- ${i}`).join('\n');
       }
 
+      
       const messageText =
         `*${picked.title}*\n` +
         `Oleh: ${picked.author}\n\n` +
-        `Bahan:\n${ingredientsText}\n\n` +
-        `[Selengkapnya](${picked.url})`;
+        `Bahan:\n${ingredientsText}`;
 
       await conn.sendMessage(chatId, {
         text: messageText,
