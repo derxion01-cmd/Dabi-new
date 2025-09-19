@@ -30,8 +30,8 @@ const store = makeInMemoryStore();
 
 let conn;
 
-// --- NEW: Define bot number for mention/reply detection ---
-const botNumber = globalSetting?.botNumber || process.env.BOT_NUMBER || "YOUR_BOT_NUMBER@s.whatsapp.net"; // <-- Replace with your bot WA ID
+
+const botNumber = globalSetting?.botNumber || process.env.6287865843362 || "6287865843362@s.whatsapp.net";
 
 global.plugins = {};
 global.categories = {};
