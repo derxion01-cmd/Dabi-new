@@ -1,4 +1,13 @@
 {
-  "Private": {},
+  "Private": {
+    "6287865843362@s.whatsapp.net": {
+      "Nama": "Joshy",
+      "Nomor": "6287865843362@s.whatsapp.net",
+      "isPremium": {
+        "isPrem": true,
+        "time": 604800000
+      }
+    }
+  },
   "Grup": {}
 }
